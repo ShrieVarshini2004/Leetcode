@@ -1,0 +1,25 @@
+class Solution(object):
+    def addBinary(self, a, b):
+        """
+        :type a: str
+        :type b: str
+        :rtype: str
+        """
+        result = ""
+        carry = 0
+
+        a = a[::-1]
+        b = b[::-1]
+
+        for i in range(max(len(a), len(b))):
+            digitA = int(a[i]) if i < len(a) else 0
+            digitB = int(b[i]) if i < len(b) else 0
+
+            total = digitA + digitB + carry
+            result = str(total % 2) + result
+            carry = total // 2
+
+        if carry:
+            result = "1" + result
+
+        return result
